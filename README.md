@@ -1,78 +1,96 @@
 # phishing_case-8815
-# 🛡️ Incidente: Phishing por enlace acortado – Caso 8815
+# 🛡️ Incident Report: Phishing via Shortened URL – Case 8815
 
-**ID del Caso:** 8815  
-**Fecha:** 16-06-2015  
-**Origen del ejercicio:** TryHackMe – Simulación SOC  
-**Clasificación:** Medium – Phishing  
-
----
-
-## 🔎 Resumen
-
-Se identificó un intento de phishing mediante un correo enviado desde una dirección sospechosa, simulando ser de Amazon. El mensaje contenía un enlace acortado `bit.ly` que redireccionaba a una IP previamente reportada como maliciosa. Un usuario hizo clic en el enlace, pero el firewall de la organización bloqueó la conexión, previniendo una posible infección.
+**Case ID:** 8815
+**Date:** June 16, 2025
+**Exercise Source:** LetsDefend – SOC Simulation
+**Severity:** Medium – Phishing
 
 ---
 
-## 🧪 Análisis técnico
+## 🔎 Executive Summary
 
-- **Remitente del correo:** `urgents@amazon.biz`
-- **Destinatario:** `h.harris@thetrydaily.thm`
-- **IP interna del usuario:** `10.20.2.17`
-- **Enlace recibido:** `http://bit.ly/3sHkX3da12340`
-- **IP de destino del enlace:** `67.199.248.10`
-
-### Resultados de análisis:
-- **VirusTotal:** 2 motores antivirus identifican el enlace/IP como maliciosos.
-- **AbuseIPDB:** IP `67.199.248.10` reportada múltiples veces como maliciosa.
-- **SIEM/FW:** El intento de conexión fue detectado y bloqueado por el firewall.
-- **Acción del usuario:** Se confirmó que hizo clic, sin ejecución de payloads.
+A phishing attempt was identified through an email sent from a suspicious address impersonating Amazon. The message contained a shortened `bit.ly` link that redirected to an IP address previously flagged as malicious. Although the targeted user clicked the link, the organization's firewall successfully blocked the outbound connection, preventing a potential compromise.
 
 ---
 
-## 🧾 Indicadores de Compromiso (IOCs)
+## 🧪 Technical Analysis
 
-| Tipo       | Valor                            | Observaciones                                   |
-|------------|----------------------------------|-------------------------------------------------|
-| Email      | `urgents@amazon.biz`             | Suplantación de marca (Amazon)                  |
-| URL        | `http://bit.ly/3sHkX3da12340`     | Acortador que redirige a dominio malicioso      |
-| IP         | `67.199.248.10`                  | IP de destino reportada como maliciosa          |
-| Usuario    | `h.harris@thetrydaily.thm`       | Usuario afectado                                |
-| IP interna | `10.20.2.17`                     | Dirección IP del equipo del usuario             |
+| Field | Value |
+|---|---|
+| **Sender** | `urgents@amazon.biz` |
+| **Recipient** | `h.harris@thetrydaily.thm` |
+| **User Internal IP** | `10.20.2.17` |
+| **Malicious Link** | `http://bit.ly/3sHkX3da12340` |
+| **Resolved Destination IP** | `67.199.248.10` |
 
----
+### Threat Intelligence Findings
 
-## 🗺️ Técnicas MITRE ATT&CK
-
-- **T1566.002** – Phishing: Link  
-- **T1204.001** – User Execution: Malicious Link
-
----
-
-## 🚨 Clasificación final
-
-✅ Confirmado Malicioso  
-➡️ Sin impacto: el intento fue bloqueado por el firewall  
-➡️ No se requiere escalamiento
+- **VirusTotal:** 2 antivirus engines flagged the link and destination IP as malicious.
+- **AbuseIPDB:** IP `67.199.248.10` has been reported multiple times for malicious activity.
+- **SIEM / Firewall:** The outbound connection attempt was detected and blocked at the perimeter.
+- **User Action:** Click confirmed — no payload was downloaded or executed.
 
 ---
 
-## 🛡️ Acciones tomadas
+## 🧾 Indicators of Compromise (IOCs)
 
-- El enlace fue reportado y agregado a listas de bloqueo.
-- Se notificó al usuario afectado para reforzar concientización.
-- No se detectó actividad adicional relacionada a esta alerta.
-- IP maliciosa monitoreada en otras reglas SIEM.
+| Type | Value | Notes |
+|---|---|---|
+| Email | `urgents@amazon.biz` | Brand impersonation (Amazon) |
+| URL | `http://bit.ly/3sHkX3da12340` | Shortened URL redirecting to malicious host |
+| IP | `67.199.248.10` | Destination IP flagged as malicious |
+| User | `h.harris@thetrydaily.thm` | Affected user account |
+| Internal IP | `10.20.2.17` | Workstation IP of affected user |
+
+---
+
+## 🗺️ MITRE ATT&CK Mapping
+
+| Technique ID | Name | Description |
+|---|---|---|
+| T1566.002 | Phishing: Spearphishing Link | Malicious link delivered via email |
+| T1204.001 | User Execution: Malicious Link | User clicked the phishing link |
 
 ---
 
-## 📘 Lecciones aprendidas
+## 🚨 Final Verdict
 
-- La suplantación de marcas conocidas sigue siendo efectiva.
-- El firewall evitó un posible compromiso.
-- Necesidad continua de concientización para usuarios finales.
+| | |
+|---|---|
+| **Classification** | ✅ Confirmed Malicious |
+| **Impact** | ✅ None — connection blocked by firewall |
+| **Escalation Required** | ❌ No |
 
 ---
+
+## 🛡️ Response Actions Taken
+
+- Malicious URL and destination IP added to firewall and SIEM blocklists.
+- Affected user was notified and received targeted security awareness guidance.
+- No further activity related to this alert was detected post-investigation.
+- IP `67.199.248.10` added to active monitoring rules across SIEM.
+
+---
+
+## 📘 Lessons Learned
+
+- Brand impersonation (particularly well-known services like Amazon) remains a highly effective social engineering vector.
+- Perimeter firewall controls proved effective in preventing a potential endpoint compromise.
+- This case reinforces the need for ongoing end-user security awareness training, particularly around shortened URLs and unsolicited emails.
+
+---
+
+## 📎 Evidence
+
+### 📌 SIEM Alert
+![splunk1](https://github.com/user-attachments/assets/b34eebfa-8b90-4f37-9b7d-2420cb65f645)
+
+### 📌 VirusTotal Analysis
+![caso1vt](https://github.com/user-attachments/assets/7129a975-e95c-4c83-ad54-319190aa86c6)
+
+### 📌 AbuseIPDB Report
+![caso1abuse](https://github.com/user-attachments/assets/f591f1c2-4e45-4ac2-9e03-96bc5c33367a)
 
 ## 📎 Evidencias
 
