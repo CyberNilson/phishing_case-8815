@@ -94,7 +94,4 @@ A phishing attempt was identified through an email sent from a suspicious addres
 
 
 
-### 📌 Reporte en AbuseIPDB
-
-![caso1abuse](https://github.com/user-attachments/assets/f591f1c2-4e45-4ac2-9e03-96bc5c33367a)
 
