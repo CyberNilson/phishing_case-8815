@@ -92,16 +92,6 @@ A phishing attempt was identified through an email sent from a suspicious addres
 ### 📌 AbuseIPDB Report
 ![caso1abuse](https://github.com/user-attachments/assets/f591f1c2-4e45-4ac2-9e03-96bc5c33367a)
 
-## 📎 Evidencias
-
-### 📌 Alerta SIEM
-
-![splunk1](https://github.com/user-attachments/assets/b34eebfa-8b90-4f37-9b7d-2420cb65f645)
-
-
-### 📌 Análisis en VirusTotal
-
-![caso1vt](https://github.com/user-attachments/assets/7129a975-e95c-4c83-ad54-319190aa86c6)
 
 
 ### 📌 Reporte en AbuseIPDB
